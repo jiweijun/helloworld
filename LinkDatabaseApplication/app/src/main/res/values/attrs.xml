@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MytTab">
+        <attr name="btnNum" format="integer"></attr>
+        <attr name="textSize" format="dimension"></attr>
+        <attr name="textNormalColor" format="color"></attr>
+        <attr name="textCheckedColor" format="color"></attr>
+        <attr name="tabBackground" format="color"></attr>
+
+    </declare-styleable>
+</resources>
