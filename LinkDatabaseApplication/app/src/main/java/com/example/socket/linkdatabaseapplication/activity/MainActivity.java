@@ -1,15 +1,18 @@
 package com.example.socket.linkdatabaseapplication.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RadioGroup;
 
 import com.example.socket.linkdatabaseapplication.R;
+import com.example.socket.linkdatabaseapplication.scan;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initFragment();
+        setIndexSelected(0);
         setRadioGroupListener();
 
 
@@ -105,5 +109,15 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    public void go2(View v) {
+
+
+        Intent intent = new Intent();
+
+        intent.setClass(MainActivity.this,scan.class);
+
+        startActivity(intent);
     }
 }
