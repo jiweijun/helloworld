@@ -18,6 +18,9 @@ import android.widget.Toast;
 
 import com.example.socket.linkdatabaseapplication.DbUtil;
 import com.example.socket.linkdatabaseapplication.R;
+import android.content.Context;
+import android.content.SharedPreferences;
+
 /*
  ---------------------------------------------登陆页面-------------------------------
  */
@@ -36,6 +39,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         init();
         WorkThread wt=new WorkThread();
         wt.start();//调动子线程
+        AutoLogin();
     }
 
     private void init() {
@@ -68,8 +72,42 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                 m.what=0;
                 handler.sendMessage(m);//把信息放到通道中
 
+
+
+                //实例化SharedPreferences对象（第一步）
+                SharedPreferences mySharedPreferences= getSharedPreferences("test",
+                        Activity.MODE_PRIVATE);
+                //实例化SharedPreferences.Editor对象（第二步）
+                SharedPreferences.Editor editor = mySharedPreferences.edit();
+                //用putString的方法保存数据
+                editor.putString("name", user_tv);
+                editor.putString("pass", password_tv);
+                //提交当前数据
+                editor.commit();
+
+
+
                 break;
         }
+    }
+
+    private void AutoLogin()
+    {
+        //同样，在读取SharedPreferences数据前要实例化出一个SharedPreferences对象
+        SharedPreferences sharedPreferences= getSharedPreferences("test",
+                Activity.MODE_PRIVATE);
+        // 使用getString方法获得value，注意第2个参数是value的默认值
+        user_tv =sharedPreferences.getString("name", "");
+        password_tv =sharedPreferences.getString("pass", "");
+        Message m=handler.obtainMessage();//获取事件
+        Bundle b=new Bundle();
+        b.putString("name",user_tv);
+        b.putString("pass",password_tv);//以键值对形式放进 Bundle中
+        m.setData(b);
+        m.what=0;
+        handler.sendMessage(m);//把信息放到通道中
+
+
     }
 
     class WorkThread extends  Thread{
