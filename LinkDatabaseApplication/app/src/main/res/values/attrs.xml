@@ -5,7 +5,7 @@
         <attr name="textSize" format="dimension"></attr>
         <attr name="textNormalColor" format="color"></attr>
         <attr name="textCheckedColor" format="color"></attr>
-        <attr name="tabBackground" format="color"></attr>
+        <attr name="tab_Background" format="color"></attr>
 
     </declare-styleable>
 </resources>
