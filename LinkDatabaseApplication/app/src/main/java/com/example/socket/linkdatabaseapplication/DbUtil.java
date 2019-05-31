@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public class DbUtil {
 
     private Connection connection;
-    public static ArrayList<EnviromentHomeClass> typeLocationList;
-    private String types,location,time;
+    public static ArrayList<Users> typeLocationList;
+    private String names,PermissionList,types,location,time;
     private double   temp,devSerialNumber,ph,rongJy,zhuD,gaoMengSY, cod,bod5,anDan,total_lin,total_dan,shiYou,yLSu,yuL,dandao,yingdu,sedu,xiaosuanyan,xuanfuwu;
 
     //连接数据库
@@ -65,35 +65,22 @@ public class DbUtil {
 
     //查询数据
       public int getTypesLocation(){
-        typeLocationList=new ArrayList<EnviromentHomeClass>();//存放查询出的数据
+        typeLocationList=new ArrayList<Users>();//存放查询出的数据
         synchronized (this){
             try {
 
-                connection=getSQLConnection("192.168.1.108", "sa", "Chemins0000", "MonitorSystem");
+                connection= getSQLConnection("192.168.1.161","sa", "123456sa\\", "TableDB");//连接数据库，修改为自己的，这个ip地址你们连不上。
 
-                String sql="select a.types,a.location,a.DevSerialNumber, \n" +
-                        "               d.time, d.temp , d.ph, d.rongjieyang,d.dandao, d.zhudu,d.gaomengsy ,d.cod ,d.bod , \n" +
-                        "               d.andan , d.alllin , d.alldan, d.yulv ,d.yingdu , d.sedu ,d.xiaosuanyan ,d.xuanfuwu , d.shiyou ,d.ylsu \n" +
-                        "from DevInfo a\n" +
-                        "       inner join (\n" +
-                        "       select  r.Time, r.DevSerialNumber,r.temp , r.ph, r.rongjieyang,r.dandao, r.zhudu,r.gaomengsy ,r.cod ,r.bod , \n" +
-                        "               r.andan , r.alllin , r.alldan, r.yulv ,r.yingdu , r.sedu ,r.xiaosuanyan ,r.xuanfuwu , r.shiyou ,r.ylsu \n" +
-                        "             from Simulation_Data r \n" +
-                        "             inner join (\n" +
-                        "                          select DevSerialNumber, max(Time) as time\n" +
-                        "                          from Simulation_Data  group by DevSerialNumber\n" +
-                        "                        )b\n" +
-                        "             on r.Time= b.Time and  r.DevSerialNumber = b.DevSerialNumber\n" +
-                        "       )d  on a.DevSerialNumber=d.DevSerialNumber;\n";
+                String sql = "select Name,PermissionList from Users_l"; //查询语句
                 PreparedStatement preparedStatement=connection.prepareStatement(sql);
                 ResultSet resultSet=preparedStatement.executeQuery();
 
                 //判断是否有下一个
                 while (resultSet.next()){
                     //通过字段得到数值
-                    types=resultSet.getString("types");//类型
-                    location=resultSet.getString("location");//地址
-                    devSerialNumber=resultSet.getFloat("DevSerialNumber");//设备号
+                    names=resultSet.getString("Name");//类型
+                    PermissionList=resultSet.getString("PermissionList");//地址
+                   /* devSerialNumber=resultSet.getFloat("DevSerialNumber");//设备号
 
                     time=resultSet.getString("time");//时间
                     temp=resultSet.getDouble("temp");//温度
@@ -123,11 +110,12 @@ public class DbUtil {
                     //石油类
                     shiYou=resultSet.getDouble("shiyou");
                     yLSu=resultSet.getDouble("ylsu");
+                    */
 
 
                     //将得到的数据存放到类中，然后存放到List中
-                    typeLocationList.add(new EnviromentHomeClass(types,location,devSerialNumber,time, temp,ph, rongJy, dandao, zhuD,
-                                        gaoMengSY, cod,  bod5, anDan, total_lin,total_dan,  yuL,yingdu, sedu, xiaosuanyan, xuanfuwu,  shiYou, yLSu) );
+                    typeLocationList.add(new Users(names,PermissionList));
+
 
                 }
             } catch (Exception e) {
