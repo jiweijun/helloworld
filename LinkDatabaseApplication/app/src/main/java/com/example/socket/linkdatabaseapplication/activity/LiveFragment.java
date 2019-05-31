@@ -1,12 +1,14 @@
 package com.example.socket.linkdatabaseapplication.activity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.socket.linkdatabaseapplication.R;
+import com.example.socket.linkdatabaseapplication.scan;
 
 public class LiveFragment extends BaseFragment {
 
@@ -19,5 +21,13 @@ public class LiveFragment extends BaseFragment {
         View view=inflater.inflate(R.layout.fragment_live,container,false);
         return view;
     }
+    public void go2(View v) {
 
+
+        Intent intent = new Intent();
+
+        intent.setClass(getActivity(),scan.class);
+
+        startActivity(intent);
+    }
 }
