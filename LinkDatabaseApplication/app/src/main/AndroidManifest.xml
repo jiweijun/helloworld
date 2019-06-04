@@ -13,8 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activity.custom_marker_view"></activity>
+        <activity android:name=".ChartActivity" />
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.LoginActivity"></activity>
+        <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".scan"></activity>
+        <activity android:name=".scan" />
     </application>
 
 </manifest>
