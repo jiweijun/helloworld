@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.socket.linkdatabaseapplication.activity.BarChartManager;
+import com.example.socket.linkdatabaseapplication.activity.LineChartManager;
 import com.example.socket.linkdatabaseapplication.activity.MyAxisValueFormatter;
 import com.example.socket.linkdatabaseapplication.activity.XAxisValueFormatter;
 import com.example.socket.linkdatabaseapplication.activity.XYMarkerView;
@@ -43,7 +44,7 @@ public class ChartActivity extends AppCompatActivity implements
     private Typeface mTfLight;
     protected BarChart mChart;
     private HorizontalBarChart hBarChart;
-    private LineChart lineChart;
+    private LineChart mlineChart;
 
 
     @Override
@@ -54,9 +55,11 @@ public class ChartActivity extends AppCompatActivity implements
        // mTfLight = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
 
         mChart = findViewById(R.id.chart1);
+        mlineChart = findViewById(R.id.lineChart);
 
         //initBarChart();
         testBarChart();
+        testLineChart();
     }
         /**
          * 初始化柱形图控件属性
@@ -213,6 +216,60 @@ public class ChartActivity extends AppCompatActivity implements
         barChartManager2.showBarChartN(xValues0, yValues,names);
     }
 
+    /**
+     * 测试折线图
+     */
+    private void testLineChart() {
+        LineChartManager lineChartManager1 = new LineChartManager(mlineChart);
+        LineChartManager lineChartManager2 = new LineChartManager(mlineChart);
+
+        //设置x轴的数据
+        ArrayList<Float> xValues = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {//10组数据
+            xValues.add((float) i);
+        }
+
+        //设置y轴的数据()
+        List<List<Float>> yValues = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            List<Float> yValue = new ArrayList<>();
+            for (int j = 0; j < 10; j++) {
+                yValue.add((float) (Math.random() * 80));
+            }
+            yValues.add(yValue);
+        }
+
+        //颜色集合
+        List<Integer> colors = new ArrayList<>();
+        colors.add(Color.GREEN);
+        colors.add(Color.BLUE);
+        colors.add(Color.RED);
+        colors.add(Color.CYAN);
+
+        //线的名字集合
+        List<String> names = new ArrayList<>();
+        names.add("折线一");
+        names.add("折线二");
+        names.add("折线三");
+        names.add("折线四");
+
+        //创建单条折线的图表
+        lineChartManager1.showLineChart(xValues, yValues.get(0), names.get(0), colors.get(0));
+        lineChartManager1.setYAxis(100, 0, 11);
+        lineChartManager1.setDescription("温度");
+        // lineChartManager1.setXAxis(10,0,xValues.size());
+        lineChartManager1.setHightLimitLine(70,"高温报警",Color.RED);
+
+        //创建多条折线的图表
+        // lineChartManager2.showLineChart(xValues, yValues, names, colors);
+        // lineChartManager2.setYAxis(100, 0, 11);
+
+
+        lineChartManager2.showLineChart(xValues, yValues, names, colors);
+        lineChartManager2.setYAxis(100, 0, 11);
+        lineChartManager2.setDescription("温度");
+
+    }
 
     @Override
     public void onValueSelected(Entry e, Highlight h) {
