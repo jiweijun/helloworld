@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.socket.linkdatabaseapplication.activity.BarChartManager;
 import com.example.socket.linkdatabaseapplication.activity.MyAxisValueFormatter;
 import com.example.socket.linkdatabaseapplication.activity.XAxisValueFormatter;
 import com.example.socket.linkdatabaseapplication.activity.XYMarkerView;
@@ -25,6 +26,7 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ChartActivity extends AppCompatActivity implements
         OnChartValueSelectedListener {
@@ -53,7 +55,8 @@ public class ChartActivity extends AppCompatActivity implements
 
         mChart = findViewById(R.id.chart1);
 
-        initBarChart();
+        //initBarChart();
+        testBarChart();
     }
         /**
          * 初始化柱形图控件属性
@@ -136,7 +139,7 @@ public class ChartActivity extends AppCompatActivity implements
         yVals1.add(new BarEntry(0, 4));
         yVals1.add(new BarEntry(1, 2));
         yVals1.add(new BarEntry(2, 6));
-        yVals1.add(new BarEntry(3, 1));
+        yVals1.add(new BarEntry(3, -1));
 
 
         BarDataSet set1;
@@ -148,7 +151,7 @@ public class ChartActivity extends AppCompatActivity implements
             mChart.getData().notifyDataChanged();
             mChart.notifyDataSetChanged();
         } else {
-            set1 = new BarDataSet(yVals1, "The year 2017");
+            set1 = new BarDataSet(yVals1, "The year 2019");
             set1.setDrawIcons(false);
 
             ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
@@ -163,6 +166,52 @@ public class ChartActivity extends AppCompatActivity implements
         }
     }
 
+    private void testBarChart() {
+        //BarChartManager barChartManager1 = new BarChartManager(mChart);
+        BarChartManager barChartManager2 = new BarChartManager(mChart);
+
+        //设置x轴的数据
+        ArrayList<String> xValues0 = new ArrayList<>();
+        xValues0.add("早晨");
+        xValues0.add("上午");
+        xValues0.add("中午");
+        xValues0.add("下午");
+        xValues0.add("晚上");
+
+        //设置x轴的数据
+        ArrayList<Float> xValues = new ArrayList<>();
+        for (int i = 1; i < 6; i++) {
+            xValues.add((float) i);
+        }
+
+        //设置y轴的数据()
+        List<List<Float>> yValues = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            List<Float> yValue = new ArrayList<>();
+            for (int j = 0; j < 5; j++) {
+                yValue.add((float) (Math.random() * 8)+2);
+            }
+            yValues.add(yValue);
+        }
+
+        //颜色集合
+        List<Integer> colors = new ArrayList<>();
+        colors.add(Color.GREEN);
+        colors.add(Color.BLUE);
+        colors.add(Color.RED);
+        colors.add(Color.CYAN);
+
+        //线的名字集合
+        List<String> names = new ArrayList<>();
+        names.add("柱状一");
+        names.add("柱状二");
+        names.add("柱状三");
+        names.add("柱状四");
+
+        //创建多条柱状的图表
+        //barChartManager1.showBarChart(xValues, yValues.get(0), names.get(1), colors.get(3));
+        barChartManager2.showBarChartN(xValues0, yValues,names);
+    }
 
 
     @Override
