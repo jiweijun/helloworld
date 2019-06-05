@@ -264,10 +264,10 @@ public class ChartActivity extends AppCompatActivity implements
         // lineChartManager2.showLineChart(xValues, yValues, names, colors);
         // lineChartManager2.setYAxis(100, 0, 11);
 
-
-        lineChartManager2.showLineChart(xValues, yValues, names, colors);
-        lineChartManager2.setYAxis(100, 0, 11);
-        lineChartManager2.setDescription("温度");
+////////////////////////////////////////////////////////////////////////////////////////////////
+        //lineChartManager2.showLineChart(xValues, yValues, names, colors);
+        //lineChartManager2.setYAxis(100, 0, 11);
+       // lineChartManager2.setDescription("温度");
 
     }
 
