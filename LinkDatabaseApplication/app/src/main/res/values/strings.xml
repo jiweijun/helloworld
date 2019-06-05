@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">底部菜单栏</string>
+    <string name="app_name">永华</string>
 
 
-    <string name="home">首页</string>
-    <string name="shop">多门店</string>
-    <string name="live">直播</string>
-    <string name="shopping_car">购物车</string>
+    <string name="home">查询</string>
+    <string name="shop">图表</string>
+    <string name="live">扫描</string>
+    <string name="shopping_car">设置</string>
     <string name="mine">我的</string>
 
 </resources>
