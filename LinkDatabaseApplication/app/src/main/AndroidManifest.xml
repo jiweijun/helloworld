@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.custom_marker_view"></activity>
+        <activity android:name=".activity.SocketActivity"></activity>
+        <activity android:name=".activity.custom_marker_view" />
         <activity android:name=".ChartActivity" />
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.LoginActivity" />
