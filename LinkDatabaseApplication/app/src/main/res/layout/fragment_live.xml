@@ -17,4 +17,10 @@
         android:layout_marginTop="161dp"
         android:onClick="go2"
         android:text="Button" />
+
+    <Button
+        android:id="@+id/btn_socket"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:text="Button" />
 </RelativeLayout>
