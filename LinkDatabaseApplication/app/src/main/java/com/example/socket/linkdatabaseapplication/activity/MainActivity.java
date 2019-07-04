@@ -1,6 +1,9 @@
 package com.example.socket.linkdatabaseapplication.activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,7 +15,8 @@ import android.widget.FrameLayout;
 import android.widget.RadioGroup;
 
 import com.example.socket.linkdatabaseapplication.R;
-import com.example.socket.linkdatabaseapplication.scan;
+import com.example.socket.linkdatabaseapplication.WIFI.wifiActivity;
+import com.example.socket.linkdatabaseapplication.barscan.scan;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -32,6 +36,20 @@ public class MainActivity extends AppCompatActivity {
         initFragment();
         setIndexSelected(0);
         setRadioGroupListener();
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            int REQUEST_CODE_CONTACT = 101;
+            String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            //验证是否许可权限
+            for (String str : permissions) {
+                if (this.checkSelfPermission(str) != PackageManager.PERMISSION_GRANTED) {
+                    //申请权限
+                    this.requestPermissions(permissions, REQUEST_CODE_CONTACT);
+                    return;
+                }
+            }
+        }
+
 
 
     }
@@ -113,13 +131,5 @@ public class MainActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    public void go2(View v) {
 
-
-        Intent intent = new Intent();
-
-        intent.setClass(MainActivity.this,scan.class);
-
-        startActivity(intent);
-    }
 }
