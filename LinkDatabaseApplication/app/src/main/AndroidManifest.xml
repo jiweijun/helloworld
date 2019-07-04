@@ -2,20 +2,42 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.socket.linkdatabaseapplication">
 
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
 
     <application
+
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/p2"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".MyApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SocketActivity"></activity>
-        <activity android:name=".activity.custom_marker_view" />
-        <activity android:name=".ChartActivity" />
+        <!--com.cdbhe.filedemo这里是你的app包名-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity android:name=".WIFI.wifiActivity"></activity>
+        <activity android:name=".WIFI.SocketActivity" />
+        <activity android:name=".mpchart.custom_marker_view" />
+        <activity android:name=".mpchart.ChartActivity" />
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.Splash">
@@ -25,7 +47,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".scan" />
+        <activity
+            android:name="com.nononsenseapps.filepicker.FilePickerActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".barscan.scan" />
     </application>
 
 </manifest>
