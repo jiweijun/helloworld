@@ -5,24 +5,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.socket.linkdatabaseapplication.DbUtil;
-import com.example.socket.linkdatabaseapplication.MyAdapter;
+import com.example.socket.linkdatabaseapplication.DB.DbUtil;
 import com.example.socket.linkdatabaseapplication.R;
-import android.content.Context;
-import android.content.SharedPreferences;
 
-import static com.example.socket.linkdatabaseapplication.DbUtil.typeLocationList;
+import android.content.SharedPreferences;
 
 /*
  ---------------------------------------------登陆页面-------------------------------
