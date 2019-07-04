@@ -6,7 +6,7 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_scan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -15,12 +15,21 @@
         android:layout_marginStart="113dp"
         android:layout_marginLeft="113dp"
         android:layout_marginTop="161dp"
-        android:onClick="go2"
-        android:text="Button" />
+        android:text="扫描测试" />
 
     <Button
         android:id="@+id/btn_socket"
         android:layout_width="match_parent"
         android:layout_height="36dp"
-        android:text="Button" />
+        android:text="socket通信" />
+
+    <Button
+        android:id="@+id/btn_wifi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="252dp"
+        android:layout_marginRight="210dp"
+        android:text="WIFI" />
 </RelativeLayout>
